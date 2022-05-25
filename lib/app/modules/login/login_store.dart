@@ -1,19 +1,23 @@
 import 'package:flutter_triple/flutter_triple.dart';
+import 'package:apresentacao/app/core/models/user_model.dart';
 
-class LoginStore extends NotifierStore<Exception, int> {
-  LoginStore() : super(0);
+class LoginStore extends NotifierStore<Exception, UserModel> {
+  // final LoginRepository _repository = Modular.get();
 
-  Future<void> increment() async {
+  LoginStore() : super(UserModel());
+
+  Future<void> login() async {
     setLoading(true);
 
-    await Future.delayed(Duration(seconds: 1));
+    await Future.delayed(const Duration(seconds: 3));
 
-    int value = state + 1;
-    if (value < 5) {
-      update(value);
-    } else {
-      setError(Exception('Error: state not can be > 4'));
-    }
+    setLoading(false);
+  }
+
+  Future<void> logout() async {
+    setLoading(true);
+
+    await Future.delayed(const Duration(seconds: 3));
 
     setLoading(false);
   }
